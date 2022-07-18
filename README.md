@@ -3,6 +3,8 @@
 [1. Summary](#summary)  
 [2. Prerequisite](#prerequisite)  
 [3. Installation](#installation)  
+[4. Run Http Server](#run)  
+[5. Test](#test)
 
 ## <a name="summary"/>1. Summary
   - ### Image captioning
@@ -16,17 +18,47 @@
 2. Install CUDA toolkit 10.2.
 3. Install cudnn8.2.1.
 
-
 ## <a name="installation"/>3. Installation
-1) ```conda create -n text-generation-v1 python=3.7```
-2) ```conda activate text-generation-v1```
-3) ```pip install -r requirements.txt```
-4) ```pip install torch==1.10.0+cu102 torchvision==0.11.0+cu102 torchaudio==0.10.0 -f https://download.pytorch.org/whl/torch_stable.html```
-5) Download the checkpoints  
+1. Clone this repository.
+    ```
+    git clone https://github.com/JamesWanglf/text-generation.git
+    cd text-generation
+    ```
+2. ```conda create -n text-generation-v1 python=3.7```
+3. ```conda activate text-generation-v1```
+4. ```pip install -r requirements.txt```
+5. ```pip install torch==1.10.0+cu102 torchvision==0.11.0+cu102 torchaudio==0.10.0 -f https://download.pytorch.org/whl/torch_stable.html```
+6. Download the checkpoints  
 You can download the pretrained model from [this link](https://drive.google.com/file/d/1JMmqsL7Nrq4B2WUXt6it3-c-4LnVOthz/view?usp=sharing) by running the following command.  
     ```
     cd image_captioning
     mkdir checkpoints
     cd checkpoints
-    gdown https://drive.google.com/uc?id=1JMmqsL7Nrq4B2WUXt6it3-c-4LnVOthz
+    gdown https://drive.google.com/uc?id=1JMmqsL7Nrq4B2WUXt6it3-c-4LnVOthz -O model_base.pth
+    cd ../..
+    ```
+    
+## <a name="run"/>4. Run Http Server
+You can run the flask server by following command.  
+```
+gunicorn -w <number of workers> -b 127.0.0.1:3000 wsgi:app
+```
+Done! Your flask server is running on 127.0.0.1:3000
+
+## <a name="test"/>5. Test
+You can test endpoints by using [test.py](https://github.com/JamesWanglf/text-generation/blob/main/test.py).
+- http://127.0.0.1:3000/image-captioning
+  - Request
+    ```
+    curl --location --request POST 'http://127.0.0.1:3000/image-captioning'
+    --header 'Content-Type: application/json'
+    --data-raw '[{
+      "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD....",
+    }]
+    ```  
+  - Response
+    ```
+    {
+      "caption": "A man playing guitar"
+    }
     ```

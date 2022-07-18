@@ -33,5 +33,5 @@ You can download the pretrained model from [this link](https://drive.google.com/
     cd image_captioning
     mkdir checkpoints
     cd checkpoints
-    gdown https://drive.google.com/uc?id=1JMmqsL7Nrq4B2WUXt6it3-c-4LnVOthz
+    gdown https://drive.google.com/uc?id=1JMmqsL7Nrq4B2WUXt6it3-c-4LnVOthz -O model_base.pth
     ```

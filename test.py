@@ -4,12 +4,12 @@ import os
 import requests
 from datetime import datetime
 
-hostname = 'http://localhost:31000'
+hostname = 'http://localhost:3000'
 dir_path = os.path.join(os.path.dirname(__file__), 'image_captioning', 'images')
 
 
 def image_captioning_test():
-    file_path = os.path.join(dir_path, f'test_image_1.png')
+    file_path = os.path.join(dir_path, f'test_image_2.png')
     with open(file_path, 'rb') as img_file:
         base64_img = base64.b64encode(img_file.read()).decode('utf-8')
 

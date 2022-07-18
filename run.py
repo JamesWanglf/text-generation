@@ -45,8 +45,7 @@ def load_model():
     global model
 
     image_size = 384
-    # model_url = 'https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base_capfilt_large.pth'
-    model = blip_decoder(pretrained='model_base.pth', image_size=image_size, vit='base')
+    model = blip_decoder(pretrained='image_captioning/checkpoints/model_base.pth', image_size=image_size, vit='base')
     model.eval()
     model = model.to(device)
 

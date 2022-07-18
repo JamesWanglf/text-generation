@@ -18,11 +18,16 @@
 
 
 ## <a name="installation"/>3. Installation
-1) ```conda create -n text-generation-v1 python=3.7```
-2) ```conda activate text-generation-v1```
-3) ```pip install -r requirements.txt```
-4) ```pip install torch==1.10.0+cu102 torchvision==0.11.0+cu102 torchaudio==0.10.0 -f https://download.pytorch.org/whl/torch_stable.html```
-5) Download the checkpoints  
+1. Clone this repository.
+    ```
+    git clone https://github.com/JamesWanglf/text-generation.git
+    cd text-generation
+    ```
+2. ```conda create -n text-generation-v1 python=3.7```
+3. ```conda activate text-generation-v1```
+4. ```pip install -r requirements.txt```
+5. ```pip install torch==1.10.0+cu102 torchvision==0.11.0+cu102 torchaudio==0.10.0 -f https://download.pytorch.org/whl/torch_stable.html```
+6. Download the checkpoints  
 You can download the pretrained model from [this link](https://drive.google.com/file/d/1JMmqsL7Nrq4B2WUXt6it3-c-4LnVOthz/view?usp=sharing) by running the following command.  
     ```
     cd image_captioning

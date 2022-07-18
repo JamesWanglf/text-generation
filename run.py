@@ -1,7 +1,5 @@
 import base64
-import cv2
 import io
-import numpy as np
 import torch
 from datetime import datetime
 from flask import Flask, request, Response, jsonify, make_response
@@ -33,7 +31,6 @@ def transform_raw_image(raw_image, image_size=384):
     encoded_data = raw_image.split(',')[1]
     decoded_string = io.BytesIO(base64.b64decode(encoded_data))
     img = Image.open(decoded_string).convert('RGB')
-    img.save('gfg_dummy_pic.png')
     
     transform = transforms.Compose([
         transforms.Resize((image_size,image_size),interpolation=InterpolationMode.BICUBIC),
@@ -48,9 +45,8 @@ def load_model():
     global model
 
     image_size = 384
-    model_url = 'https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base_capfilt_large.pth'
-
-    model = blip_decoder(pretrained=model_url, image_size=image_size, vit='base')
+    # model_url = 'https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base_capfilt_large.pth'
+    model = blip_decoder(pretrained='model_base.pth', image_size=image_size, vit='base')
     model.eval()
     model = model.to(device)
 
